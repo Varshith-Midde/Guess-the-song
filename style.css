@@ -320,12 +320,22 @@ button:disabled {
 ========================================================= */
 
 .game-screen {
-    align-items: flex-start;
+    /* Keep the entire game layout stacked vertically like Guess the Movie. */
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
     padding-top: 10px;
 }
 
+.game-screen > * {
+    width: 100%;
+}
+
 .game-screen .game-card {
+    width: 100%;
     max-width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* =========================================================
