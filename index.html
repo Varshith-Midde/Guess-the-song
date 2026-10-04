@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Guess famous Telugu songs from picture clues. 100 songs, hints, streaks and challenges."
+    >
+
+    <meta
+        name="theme-color"
+        content="#080817"
+    >
+
+    <title>Guess the Song | Telugu Song Challenge</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="game-container">
+
+    <!-- =========================================
+         START SCREEN
+    ========================================== -->
+
+    <section
+        id="startScreen"
+        class="screen start-screen"
+    >
+
+        <div class="start-card">
+
+            <div class="start-icon">
+                🎵
+            </div>
+
+            <div class="logo-area">
+
+                <h1>
+                    Guess the Song
+                </h1>
+
+                <p>
+                    Can you identify the Telugu song
+                    from the picture clues?
+                </p>
+
+            </div>
+
+
+            <!-- Game Information -->
+
+            <div class="start-info">
+
+                <div class="info-item">
+                    <strong>🎵 100</strong>
+                    <span>Telugu Songs</span>
+                </div>
+
+                <div class="info-item">
+                    <strong>🖼️ 1–9</strong>
+                    <span>Picture Clues</span>
+                </div>
+
+                <div class="info-item">
+                    <strong>💡 Hint</strong>
+                    <span>Available</span>
+                </div>
+
+            </div>
+
+
+            <!-- Categories -->
+
+            <div class="categories">
+
+                <span class="category">
+                    🎬 Movie
+                </span>
+
+                <span class="category">
+                    🎤 Private
+                </span>
+
+                <span class="category">
+                    🌾 Folk
+                </span>
+
+                <span class="category">
+                    🔥 Trending
+                </span>
+
+            </div>
+
+
+            <!-- Start Button -->
+
+            <div class="actions">
+
+                <button
+                    id="startButton"
+                    class="btn btn-primary primary-button"
+                    type="button"
+                >
+                    🎵 Start Game
+                </button>
+
+            </div>
+
+
+            <p class="start-note">
+                Questions and answers are shuffled every game.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         GAME SCREEN
+    ========================================== -->
+
+    <section
+        id="gameScreen"
+        class="screen game-screen hidden"
+    >
+
+        <!-- Header -->
+
+        <header class="game-header">
+
+            <div class="logo-area">
+
+                <h1>
+                    🎵 Guess the Song
+                </h1>
+
+                <p>
+                    Telugu Song Challenge
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    id="restartButton"
+                    class="btn btn-secondary icon-button"
+                    type="button"
+                    title="Restart game"
+                    aria-label="Restart game"
+                >
+                    🔄 Restart
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================
+             GAME STATS
+        ====================================== -->
+
+        <div class="stats-container">
+
+            <div class="stat-box">
+
+                <span class="stat-label">
+                    Score
+                </span>
+
+                <span
+                    id="score"
+                    class="stat-value"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <span class="stat-label">
+                    Streak
+                </span>
+
+                <span
+                    id="streak"
+                    class="stat-value"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <span class="stat-label">
+                    Lives
+                </span>
+
+                <span
+                    id="lives"
+                    class="stat-value"
+                >
+                    ❤️❤️❤️
+                </span>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <span class="stat-label">
+                    Hints
+                </span>
+
+                <span
+                    id="hintsUsed"
+                    class="stat-value"
+                >
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             PROGRESS
+        ====================================== -->
+
+        <div class="progress-section">
+
+            <div class="progress-info">
+
+                <span>
+                    Question
+                    <strong id="currentQuestion">
+                        1
+                    </strong>
+                    /
+                    <strong id="totalQuestions">
+                        100
+                    </strong>
+                </span>
+
+
+                <span id="categoryLabel">
+                    🎵 Song
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                    style="width: 1%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             MAIN GAME CARD
+        ====================================== -->
+
+        <div class="game-card">
+
+
+            <!-- Question Header -->
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    🎯 Guess this song
+                </span>
+
+                <span
+                    id="questionCategory"
+                    class="category-badge"
+                >
+                    Telugu Song
+                </span>
+
+            </div>
+
+
+
+            <!-- Timer -->
+
+            <div class="timer-container">
+
+                <div
+                    id="timerCircle"
+                    class="timer"
+                >
+
+                    <span id="timer">
+                        20
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Clue Title -->
+
+            <div class="clues-title">
+
+                Identify the song from these clues
+
+            </div>
+
+
+
+            <!-- Dynamic Clue Images -->
+
+            <div
+                id="clueImages"
+                class="clues-container clue-images"
+                aria-label="Song picture clues"
+            ></div>
+
+
+
+            <!-- =================================
+                 HINT
+            ================================== -->
+
+            <div class="hint-area">
+
+                <div class="actions">
+
+                    <button
+                        id="hintButton"
+                        class="btn btn-hint hint-button"
+                        type="button"
+                    >
+                        💡 Use Hint
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="hintBox"
+                    class="hint-box hidden"
+                    role="status"
+                    aria-live="polite"
+                >
+
+                    <span class="hint-label">
+                        💡 Hint:
+                    </span>
+
+                    <span id="hintText"></span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 ANSWERS
+            ================================== -->
+
+            <div class="answers-title">
+
+                Choose the correct song
+
+            </div>
+
+
+            <div
+                id="optionsContainer"
+                class="answers-container options-container"
+            >
+
+                <button
+                    class="answer-btn answer-button"
+                    type="button"
+                    data-option="0"
+                >
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    <span class="option-text"></span>
+
+                </button>
+
+
+                <button
+                    class="answer-btn answer-button"
+                    type="button"
+                    data-option="1"
+                >
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    <span class="option-text"></span>
+
+                </button>
+
+
+                <button
+                    class="answer-btn answer-button"
+                    type="button"
+                    data-option="2"
+                >
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    <span class="option-text"></span>
+
+                </button>
+
+
+                <button
+                    class="answer-btn answer-button"
+                    type="button"
+                    data-option="3"
+                >
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    <span class="option-text"></span>
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================
+                 FEEDBACK
+            ================================== -->
+
+            <div
+                id="feedback"
+                class="feedback hidden"
+                role="status"
+                aria-live="polite"
+            >
+
+                <div
+                    id="feedbackIcon"
+                    class="feedback-icon"
+                >
+                    ✓
+                </div>
+
+
+                <div class="feedback-content">
+
+                    <strong id="feedbackTitle">
+                        Correct!
+                    </strong>
+
+                    <p id="feedbackText"></p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Next Button -->
+
+            <div class="actions">
+
+                <button
+                    id="nextButton"
+                    class="btn btn-primary next-button hidden"
+                    type="button"
+                >
+                    Next Song →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         GAME OVER / RESULT SCREEN
+    ========================================== -->
+
+    <section
+        id="gameOverScreen"
+        class="screen result-screen game-over-screen hidden"
+    >
+
+        <div class="result-card">
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+
+            <h2>
+                Game Over!
+            </h2>
+
+
+            <p class="result-message">
+                Great job playing Guess the Song!
+            </p>
+
+
+            <!-- Final Score -->
+
+            <div class="final-score">
+
+                <span id="finalScore">
+                    0
+                </span>
+
+            </div>
+
+
+            <p class="result-message">
+                points
+            </p>
+
+
+
+            <!-- =================================
+                 FINAL STATISTICS
+            ================================== -->
+
+            <div class="result-stats">
+
+                <div class="result-stat">
+
+                    <strong id="correctAnswers">
+                        0
+                    </strong>
+
+                    <span>
+                        🎯 Correct
+                    </span>
+
+                </div>
+
+
+                <div class="result-stat">
+
+                    <strong id="wrongAnswers">
+                        0
+                    </strong>
+
+                    <span>
+                        ❌ Wrong
+                    </span>
+
+                </div>
+
+
+                <div class="result-stat">
+
+                    <strong id="bestStreak">
+                        0
+                    </strong>
+
+                    <span>
+                        🔥 Best Streak
+                    </span>
+
+                </div>
+
+
+                <!-- IMPORTANT:
+                     This ID is different from the
+                     gameplay hintsUsed ID.
+                -->
+
+                <div class="result-stat">
+
+                    <strong id="finalHintsUsed">
+                        0
+                    </strong>
+
+                    <span>
+                        💡 Hints Used
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 PERFORMANCE
+            ================================== -->
+
+            <div class="performance-card">
+
+                <h3>
+                    Your Performance
+                </h3>
+
+
+                <div class="performance-bar">
+
+                    <div
+                        id="performanceFill"
+                        class="performance-fill"
+                    ></div>
+
+                </div>
+
+
+                <p id="performanceText">
+                    Keep playing!
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================
+                 RESULT ACTIONS
+            ================================== -->
+
+            <div class="actions">
+
+                <button
+                    id="playAgainButton"
+                    class="btn btn-primary primary-button"
+                    type="button"
+                >
+                    🔄 Play Again
+                </button>
+
+
+                <button
+                    id="homeButton"
+                    class="btn btn-secondary secondary-button"
+                    type="button"
+                >
+                    🏠 Home
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         RESTART MODAL
+    ========================================== -->
+
+    <div
+        id="restartModal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="restartTitle"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-icon">
+                🔄
+            </div>
+
+
+            <h2 id="restartTitle">
+                Restart Game?
+            </h2>
+
+
+            <p>
+                Your current progress will be lost.
+            </p>
+
+
+            <div class="actions">
+
+                <button
+                    id="cancelRestart"
+                    class="btn btn-secondary secondary-button"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    id="confirmRestart"
+                    class="btn btn-primary primary-button"
+                    type="button"
+                >
+                    Restart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         LOADING
+    ========================================== -->
+
+    <div
+        id="loadingScreen"
+        class="loading hidden"
+    >
+
+        <div class="spinner"></div>
+
+    </div>
+
+
+
+    <!-- SCORE POPUP -->
+
+    <div
+        id="scorePopup"
+        class="score-popup"
+        aria-live="polite"
+    ></div>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="game-footer">
+
+        <strong>
+            Guess the Song
+        </strong>
+
+        <br>
+
+        Telugu Picture Song Challenge
+
+    </footer>
+
+</main>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================== -->
+
+<script src="songs.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
